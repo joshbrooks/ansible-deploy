@@ -1,0 +1,19 @@
+- include_vars: role_vars.yml
+
+- name: nodejs | Add apt key
+  apt_key:
+    keyserver: ha.pool.sks-keyservers.net
+    id: "68576280"
+    state: present
+
+- name: nodejs | Add repository
+  apt_repository:
+    repo: deb http://deb.nodesource.com/node_{{version}} {{release}} main
+    state: present
+
+
+- name: nodejs | Apt install 
+  package:
+    name: nodejs
+    update_cache: yes
+    state: present

@@ -1,0 +1,9 @@
+- name: Add Docker repository key
+  apt_key:
+    id: - name: Add Docker repository key
+  apt_key:
+    id: "{{ apt_key_sig }}"
+    keyserver: "{{ apt_key_url }}"
+    state: present
+    keyserver: "{{ apt_key_url }}"
+    state: present
