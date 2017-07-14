@@ -1,0 +1,2 @@
+devpi_server: localhost
+devpi_port: 3141

@@ -1,0 +1,38 @@
+
+- include_vars: role_vars.yml
+
+- name: devpi-server | Create virtualenv
+  pip:
+    name: "{{ item }}"
+    virtualenv: /virtualenvs/ansible-devpi
+    virtualenv_site_packages: yes
+  with_items:
+    - devpi-server
+    - devpi-web
+
+- name: devpi | Run --init
+  command: /virtualenvs/ansible-devpi/bin/devpi-server --init
+  args:
+    creates: /root/.devpi
+
+- name: devpi | Run gen-config
+  command: /virtualenvs/ansible-devpi/bin/devpi-server --host 0.0.0.0 --port 3141 --gen-config
+  args:
+    chdir: /tmp
+  
+- name: devpi | Copy service file
+  copy:
+    remote_src: True
+    src: /tmp/gen-config/devpi.service
+    dest: /etc/systemd/system
+
+- name: devpi | run service
+  service:
+    name: devpi
+    enabled: yes
+    state: started
+    
+- name: devpi | Check that port 3141 returns a success code
+  uri:
+    url: http://localhost:3141
+    status_code: 200
