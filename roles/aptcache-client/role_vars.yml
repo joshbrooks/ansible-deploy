@@ -1,2 +1,2 @@
-aptcacheserver: josh-MacBookPro.local
+aptcacheserver: localhost
 aptcacheport: 3142

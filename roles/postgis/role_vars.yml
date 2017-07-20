@@ -1,0 +1,4 @@
+release: xenial
+postgresql_version: 9.6
+postgis_version: 2.3
+postgis_package_version: 2.3.2+dfsg-1~exp2.pgdg16.04+1
