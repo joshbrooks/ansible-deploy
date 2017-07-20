@@ -1,0 +1,27 @@
+- name: chrome-driver | Check the latest release code
+  uri:
+    url: https://chromedriver.storage.googleapis.com/LATEST_RELEASE
+    status_code: 200
+    return_content: yes
+  register: chromedriver
+
+- stat:
+    path: /usr/local/bin/chromedriver-{{chromedriver}}
+  register: sym
+
+- debug:
+    msg: "islnk isn't defined (path doesn't exist)"
+  when: sym.stat.islnk is not defined
+
+- name: chrome-driver | Download the latest ChromeDriver release
+  get_url:
+    url: https://chromedriver.storage.googleapis.com/{{ chromedriver }}/chromedriver_linux64.zip
+    dest: /usr/local/bin/chromedriver-{{chromedriver}}.zip
+    mode: 0440
+  when: sym.exists is False
+
+- unarchive:
+    src: /usr/local/bin/chromedriver-{{chromedriver}}.zip
+    dest: /usr/local/chromedriver
+    remote_src: True
+  when: sym.exists is False
