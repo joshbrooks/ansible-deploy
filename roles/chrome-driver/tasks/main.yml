@@ -5,23 +5,27 @@
     return_content: yes
   register: chromedriver
 
+- debug:
+    msg: "/usr/local/bin/chromedriver-{{chromedriver.content|trim}}"
+
 - stat:
-    path: /usr/local/bin/chromedriver-{{chromedriver}}
+    path: "/usr/local/bin/chromedriver-{{chromedriver.content|trim}}"
   register: sym
 
 - debug:
-    msg: "islnk isn't defined (path doesn't exist)"
+    msg: "Get chrome driver {{chromedriver.content|trim}}"
   when: sym.stat.islnk is not defined
 
 - name: chrome-driver | Download the latest ChromeDriver release
   get_url:
-    url: https://chromedriver.storage.googleapis.com/{{ chromedriver }}/chromedriver_linux64.zip
-    dest: /usr/local/bin/chromedriver-{{chromedriver}}.zip
-    mode: 0440
-  when: sym.exists is False
+    url: https://chromedriver.storage.googleapis.com/{{ chromedriver.content|trim }}/chromedriver_linux64.zip
+    dest: /usr/local/bin/chromedriver-{{ chromedriver.content|trim }}.zip
+    mode: 0755
+  when: sym.stat.islnk is not defined
 
 - unarchive:
-    src: /usr/local/bin/chromedriver-{{chromedriver}}.zip
-    dest: /usr/local/chromedriver
+    src: "/usr/local/bin/chromedriver-{{ chromedriver.content|trim }}.zip"
+    dest: /usr/local/bin
     remote_src: True
-  when: sym.exists is False
+    mode: 0755
+  when: sym.stat.islnk is not defined

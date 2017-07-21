@@ -39,16 +39,30 @@
     - geany
     - geany-plugins
 
-# - name: Copy pycharm installation file
-#   unarchive:
-#     src: files/pycharm-professional-2017.1.5.tar.gz
-#     dest: /usr/local/bin
-#     remote_src: true
+ - name: Copy pycharm installation file
+   unarchive:
+     src: files/pycharm-professional-2017.1.5.tar.gz
+     dest: /opt
+     remote_src: true
 
 - name: developer | Increase inotify watch limit
   copy:
     src: files/60-jetbrains.conf
     dest: /etc/sysctl.d/60-jetbrains.conf
 
+- name: developer | Kraken needs curl
+  package:
+    name: "{{item}}"
+    update_cache: no
+    state: present
+  with_items:
+    - libcurl3
 
+- name: developer | Copy Kraken 
+  copy:
+    src: files/gitkraken-amd64.deb
+    dest: /tmp/gitkraken-amd64.deb
 
+- name: developer | Release the Kraken
+  apt:
+    deb: /tmp/gitkraken-amd64.deb
