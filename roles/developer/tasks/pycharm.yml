@@ -1,8 +1,8 @@
- - name: Copy pycharm installation file
-   unarchive:
-     src: files/pycharm-professional-2017.1.5.tar.gz
-     dest: /opt
-     remote_src: true
+- name: Copy pycharm installation file
+  unarchive:
+    src: files/pycharm-professional-2017.1.5.tar.gz
+    dest: /opt
+    remote_src: true
 
 - name: developer | Increase inotify watch limit
   copy:

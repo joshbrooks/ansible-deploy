@@ -1,4 +1,9 @@
-- include: python.yml
-- include: phantomjs.yml
-- include: pycharm.yml
-- include: kraken.yml
+#- include: python.yml
+#- include: phantomjs.yml
+#- include: pycharm.yml
+#- include: kraken.yml
+- include: postgis.yml
+  vars:
+    pg_v: "9.6"
+    postgis_v: "2.3"
+    pg_post_v: "2.3.2+dfsg-1~exp2.pgdg16.04+1"
