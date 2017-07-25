@@ -1,0 +1,16 @@
+- name: developer | Kraken needs curl
+  package:
+    name: "{{item}}"
+    update_cache: no
+    state: present
+  with_items:
+    - libcurl3
+
+- name: developer | Copy Kraken
+  copy:
+    src: files/gitkraken-amd64.deb
+    dest: /tmp/gitkraken-amd64.deb
+
+- name: developer | Release the Kraken
+  apt:
+    deb: /tmp/gitkraken-amd64.deb
