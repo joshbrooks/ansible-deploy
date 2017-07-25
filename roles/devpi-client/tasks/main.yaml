@@ -1,10 +1,17 @@
 
 - include_vars: role_vars.yml
 
+- uri:
+    url: http://{{devpi_server}}:{{devpi_port}}/acng-report.html
+    return_content: yes
+  ignore_errors: yes
+  register: webpage
+
 - name: devpi-client | Create .pip
   file: path=/home/{{item}}/.pip state=directory
   with_items:
     - josh
+  when: "'devpi-server' in webpage.content"
 
 - name: devpi-client-config | Create pip config file
   template:
@@ -12,6 +19,8 @@
     dest: /home/{{ item }}/.pip/pip.conf
   with_items:
     - josh
+  when: "'devpi-server' in webpage.content"
+
 
 - name: devpi-client-config | Create easy_install config file
   template:
@@ -19,3 +28,4 @@
     dest: /home/{{ item }}/.pydistutils.cfg
   with_items:
     - josh
+    when: "'devpi-server' in webpage.content"

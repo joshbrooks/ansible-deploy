@@ -1,2 +1,2 @@
-devpi_server: localhost
+devpi_server: josh-x201.local
 devpi_port: 3141

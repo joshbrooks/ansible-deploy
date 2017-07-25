@@ -1,6 +1,7 @@
-- hosts: local
+- hosts: asus
   become: yes
   roles:
+    - devpi-client
     - developer
     - ansible
     - chrome-driver
