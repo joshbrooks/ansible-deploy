@@ -1,0 +1,5 @@
+- name: ansible | Install ansible
+  package:
+    name: ansible
+    update_cache: yes
+    state: present

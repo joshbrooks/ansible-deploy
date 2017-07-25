@@ -1,0 +1,25 @@
+- name: developer | Install PhantomJS prereqs
+  package:
+    name: "{{item}}"
+    update_cache: no
+    state: present
+  with_items:
+    - build-essential
+    - chrpath
+    - libssl-dev
+    - libxft-dev
+    - libfreetype6
+    - libfreetype6-dev
+    - libfontconfig1
+    - libfontconfig1-dev
+
+- name: developer | Copy PhantomJS binary
+  unarchive:
+    src: files/phantomjs-2.1.1-linux-x86_64.tar.bz2
+    dest: /usr/local/share
+
+- name: developer | Create symlink to PhantomJS binary
+  file:
+    src: /usr/local/share/phantomjs-2.1.1-linux-x86_64/bin/phantomjs
+    dest: /usr/local/bin/phantomjs
+    state: link
