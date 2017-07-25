@@ -1,4 +1,4 @@
-- hosts: asus
+- hosts: local
   become: yes
   roles:
     # - postgis

@@ -1,2 +1,2 @@
-aptcacheserver: localhost
+aptcacheserver: 172.17.0.1
 aptcacheport: 3142
