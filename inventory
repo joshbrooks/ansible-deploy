@@ -1,5 +1,5 @@
 [local]
-localhost
+localhost ansible_connection=local
 
 [asus]
-josh-asus.local
+josh-asus.local ansible_connection=ssh
