@@ -1,0 +1,19 @@
+- name: mongo| Configure the Mongo APT key
+  apt_key:
+    keyserver: hkp://keyserver.ubuntu.com:80
+    id: "0C49F3730359A14518585931BC711F9BA15703C6"
+    state: present
+
+- name: mongo | Configure the Mongo APT repositories
+  apt_repository:
+    repo: deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse
+    state: present
+
+- name: Install mongodb-org
+  package:
+    name: "{{ item }}"
+    update_cache: yes
+    state: present
+  with_items:
+    - mongodb-org
+

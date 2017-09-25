@@ -1,0 +1,31 @@
+# Default to double your system's RAM capacity if you have 2GB or less.
+# swapfile_size: '{{ ((ansible_memtotal_mb|int * 2)
+#                     if (ansible_memtotal_mb|int <= 2048)
+#                     else "512") }}'
+
+swapfile_size: 4096
+
+swapfile_swappiness: 20
+
+# Using fallocate is quite a bit faster than dd, so we'll default to using that.
+# If your file system does not support fallocate, set this to False.
+swapfile_fallocate: True
+
+# Where should the swap file be created?
+swapfile_path: '/swapfile-{{ swapfile_size }}'
+
+# Settings to configure your swap file. Google them for more details.
+swapfile_swappiness: 60
+swapfile_vfs_cache_pressure: 100
+
+# Default settings for configuring your swap file, you should not edit this
+# directly. Instead use the variables above. This allows you to customize just
+# 1 of them without having to bring along the entire dictionary.
+swapfile_sysctl:
+  'vm.swappiness': '{{ swapfile_swappiness }}'
+  'vm.vfs_cache_pressure': '{{ swapfile_vfs_cache_pressure }}'
+
+# When set to True, the swap file will be disabled and deleted.
+swapfile_delete: False
+
+

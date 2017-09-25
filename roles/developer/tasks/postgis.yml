@@ -1,0 +1,14 @@
+- name: Configure the PostgreSQL APT key
+  apt_key: url=https://www.postgresql.org/media/keys/ACCC4CF8.asc state=present
+
+- name: Configure the PostgreSQL APT repositories
+  apt_repository: repo="deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main"
+                  state=present
+
+- name: Install PostGIS
+  apt:
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - postgresql-{{ pg_v }}-postgis-{{ postgis_v }}={{ pg_post_v }}
+    - postgresql-{{ pg_v }}-postgis-{{ postgis_v }}-scripts={{ pg_post_v }}

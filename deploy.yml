@@ -1,7 +1,4 @@
-- hosts: local
+- hosts: asus
   become: yes
   roles:
-    - developer
-    - ansible
-    - chrome-driver
-    - nodejs
+    - swapfile
