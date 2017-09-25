@@ -5,8 +5,6 @@
 
 swapfile_size: 4096
 
-swapfile_swappiness: 20
-
 # Using fallocate is quite a bit faster than dd, so we'll default to using that.
 # If your file system does not support fallocate, set this to False.
 swapfile_fallocate: True

@@ -1,3 +1,7 @@
+- name: Include postgis vars
+  include_vars: 
+    file: postgis_vars.yml
+
 - name: Configure the PostgreSQL APT key
   apt_key: url=https://www.postgresql.org/media/keys/ACCC4CF8.asc state=present
 

@@ -1,6 +1,6 @@
 - name: Copy pycharm installation file
   unarchive:
-    src: files/pycharm-professional-2017.1.5.tar.gz
+    src: /tmp/pycharm-professional-2017.2.3.tar.gz
     dest: /opt
     remote_src: true
 

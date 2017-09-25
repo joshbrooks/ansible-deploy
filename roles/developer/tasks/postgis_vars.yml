@@ -1,0 +1,3 @@
+pg_v: "9.6"
+postgis_v : "2.3"
+pg_post_v: "2.3.3+dfsg-1.pgdg16.04+1"
