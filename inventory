@@ -1,8 +1,5 @@
-asus ansible_host=josh-asus.local
-
 [local]
-# asus
 localhost
 
 [asus]
-asus
+josh-asus.local

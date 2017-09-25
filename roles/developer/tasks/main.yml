@@ -1,14 +1,8 @@
-#- include: python.yml
-#- include: phantomjs.yml
-#- include: pycharm.yml
-#- include: kraken.yml
-- include: mongo.yml
-  tags: 
-    - mongo
-
+- include: python.yml
+- include: phantomjs.yml
+- include: pycharm.yml
+- include: kraken.yml
 - include: postgis.yml
-  tags:
-    - postgis
   vars:
     pg_v: "9.6"
     postgis_v: "2.3"
