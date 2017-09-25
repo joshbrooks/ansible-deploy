@@ -28,4 +28,4 @@
     dest: /home/{{ item }}/.pydistutils.cfg
   with_items:
     - josh
-    when: "'devpi-server' in webpage.content"
+  when: "'devpi-server' in webpage.content"

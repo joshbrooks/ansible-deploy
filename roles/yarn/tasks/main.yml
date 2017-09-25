@@ -5,7 +5,7 @@
 
 - name: yarn | Add repository
   apt_repository:
-    repo: deb deb https://dl.yarnpkg.com/debian/ stable main
+    repo: deb http://dl.yarnpkg.com/debian/ stable main
     state: present
 
 - name: yarn | Install yarn

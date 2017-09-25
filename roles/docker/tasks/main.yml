@@ -14,3 +14,9 @@
     name: docker-engine
     update_cache: yes
     state: present
+
+- name: docker | Copy binary for docker-compose
+  copy:
+    src: files/docker-compose-Linux-x86_64
+    dest: /usr/local/bin/docker-compose
+    mode: 0755
