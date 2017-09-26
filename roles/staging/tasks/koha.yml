@@ -1,0 +1,58 @@
+- name: Configure the Koha APT key
+  apt_key: url=http://debian.koha-community.org/koha/gpg.asc state=present
+
+- name: Configure the Koha APT repositories
+  apt_repository: repo="deb http://debian.koha-community.org/koha stable main"
+                  state=present
+
+- name: koha | Install Prrequisites
+  package:
+    name: "{{item}}"
+    update_cache: no
+    state: present
+  with_items:
+    - wget
+    - unzip
+    - python-software-properties
+    - xmlstarlet
+    - koha-common
+    - apache2
+    - mariadb-server
+    - libapache2-mpm-itk
+    - memcached
+
+- name: Koha packages tweaks | Use our koha-sites.conf file
+  template:
+    src: koha-sites.conf.j2
+    dest: /etc/koha/koha-sites.conf
+    mode: 0644
+    owner: root
+
+  # This needs to be done before trying to enable the cgi module
+- name: Apache | MPM fix
+  apache2_module:
+    name: mpm_event
+    state: absent
+
+- name: Apache | Disable default vhost
+  shell: a2dissite 000-default
+
+- name: Apache | Set ports
+  template:
+    src: ports.conf.j2
+    dest: /etc/apache2/ports.conf
+    mode: 0644
+
+- name: Apache | Enable needed modules
+  apache2_module:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - rewrite
+    - headers
+    - proxy_http
+    - cgi
+
+- service:
+    name: apache2
+    state: restarted

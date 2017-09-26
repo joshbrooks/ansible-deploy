@@ -1,1 +1,1 @@
-ansible-playbook deploy.yml -i ./inventory -K
+ansible-playbook -vvv deploy.yml -i ./inventory -K
