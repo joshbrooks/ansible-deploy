@@ -1,9 +1,12 @@
 - name: Configure the Koha APT key
-  apt_key: url=http://debian.koha-community.org/koha/gpg.asc state=present
+  apt_key: 
+    url: http://debian.koha-community.org/koha/gpg.asc 
+    state: present
 
 - name: Configure the Koha APT repositories
-  apt_repository: repo="deb http://debian.koha-community.org/koha stable main"
-                  state=present
+  apt_repository: 
+    repo: deb http://debian.koha-community.org/koha {{version}} main
+    state: present
 
 - name: koha | Install Prrequisites
   package:

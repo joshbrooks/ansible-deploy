@@ -16,4 +16,4 @@
   package:
     name: nodejs
     update_cache: yes
-    state: present
+    state: latest
