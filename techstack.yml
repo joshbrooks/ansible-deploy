@@ -1,0 +1,40 @@
+repo_name: joshbrooks/ansible-deploy
+report_id: cab358954b83d7f832a23cee5fb33507
+repo_type: Public
+timestamp: '2023-11-10T00:02:42+00:00'
+requested_by: joshbrooks
+provider: github
+branch: master
+detected_tools_count: 3
+tools:
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source: Repo Metadata
+- name: DigitalOcean
+  description: Deploy an SSD cloud server in less than 55 seconds with a dedicated
+    IP and root access.
+  website_url: https://www.digitalocean.com/
+  open_source: false
+  hosted_saas: true
+  category: Application Hosting
+  sub_category: Cloud Hosting
+  image_url: https://img.stackshare.io/service/295/Onjxs6Lw_400x400.jpg
+  detection_source: roles/staging/tasks/digitalocean.yml
+  last_updated_by: Joshua Brooks
+  last_updated_on: 2018-01-26 05:20:25.000000000 Z
+- name: Shell
+  description: A shell is a text-based terminal, used for manipulating programs and
+    files. Shell scripts typically manage program execution.
+  website_url: https://en.wikipedia.org/wiki/Shell_script
+  open_source: false
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/4631/default_c2062d40130562bdc836c13dbca02d318205a962.png
+  detection_source: Repo Metadata
