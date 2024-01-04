@@ -1,7 +1,8 @@
 repo_name: joshbrooks/ansible-deploy
 report_id: cab358954b83d7f832a23cee5fb33507
+version: 0.1
 repo_type: Public
-timestamp: '2023-11-10T00:02:42+00:00'
+timestamp: '2024-01-04T15:17:17+00:00'
 requested_by: joshbrooks
 provider: github
 branch: master
@@ -15,6 +16,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Version Control System
   image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/joshbrooks/ansible-deploy
   detection_source: Repo Metadata
 - name: DigitalOcean
   description: Deploy an SSD cloud server in less than 55 seconds with a dedicated
@@ -25,6 +27,7 @@ tools:
   category: Application Hosting
   sub_category: Cloud Hosting
   image_url: https://img.stackshare.io/service/295/Onjxs6Lw_400x400.jpg
+  detection_source_url: https://github.com/joshbrooks/ansible-deploy/blob/master/roles/staging/tasks/digitalocean.yml
   detection_source: roles/staging/tasks/digitalocean.yml
   last_updated_by: Joshua Brooks
   last_updated_on: 2018-01-26 05:20:25.000000000 Z
@@ -37,4 +40,5 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/4631/default_c2062d40130562bdc836c13dbca02d318205a962.png
+  detection_source_url: https://github.com/joshbrooks/ansible-deploy
   detection_source: Repo Metadata
